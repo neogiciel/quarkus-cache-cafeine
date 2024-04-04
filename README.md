@@ -1,5 +1,7 @@
 <h1>Application Quarkus Redis MySQL</h1>
 <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/6b/Redis_Logo.svg/701px-Redis_Logo.svg.png?20190421180155" height=160px>
+![Quarkus-logo svg](https://github.com/neogiciel/quarkus-cache-cafeine/assets/123723616/f19a7ca2-e654-495d-af33-93d5cfa8bedc)
+
 <p>
 Mise en place d'un cache distribué Redis avec MysQL
 </p>
