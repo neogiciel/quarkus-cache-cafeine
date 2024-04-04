@@ -12,11 +12,11 @@ Ajout des dépendences<br>
   <artifactId>quarkus-cache</artifactId>
 </dependency>
 <h2>application.properties</h2><br>
-#Configuration Apache Came!
-quarkus.cache.caffeine.initial-capacity=10
-quarkus.cache.caffeine.maximum-size=20
-quarkus.cache.caffeine.expire-after-write=60S
-quarkus.cache.caffeine.maximum-size=1000
+#Configuration Apache Came<br>
+quarkus.cache.caffeine.initial-capacity=10<br>
+quarkus.cache.caffeine.maximum-size=20<br>
+quarkus.cache.caffeine.expire-after-write=60S<br>
+quarkus.cache.caffeine.maximum-size=1000<br>
 </p>
 <h2>Controller ApiController.java</h2><br>
 <p>
