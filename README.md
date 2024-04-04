@@ -1,4 +1,4 @@
-<h1>Application Quarkus Redis MySQL</h1>
+<h1>Application Quarkus Cache Apache Camel</h1>
 <img src="https://github.com/neogiciel/quarkus-cache-cafeine/assets/123723616/c56eb91d-dfb8-49a1-98b8-0da983bb9476" height=160px>
 <p>
 Mise en place d'un cache Apache Camel
@@ -12,7 +12,7 @@ Ajout des dépendences<br>
   <artifactId>quarkus-cache</artifactId>
 </dependency>
 <h2>application.properties</h2><br>
-#Configuration Apache Came<br>
+#Configuration Apache Camel<br>
 quarkus.cache.caffeine.initial-capacity=10<br>
 quarkus.cache.caffeine.maximum-size=20<br>
 quarkus.cache.caffeine.expire-after-write=60S<br>
