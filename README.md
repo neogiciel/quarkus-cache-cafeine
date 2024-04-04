@@ -1,7 +1,7 @@
 <h1>Application Quarkus Redis MySQL</h1>
 <img src="https://github.com/neogiciel/quarkus-cache-cafeine/assets/123723616/c56eb91d-dfb8-49a1-98b8-0da983bb9476" height=160px>
 <p>
-Mise en place d'un cache distribué Redis avec MysQL
+Mise en place d'un cache Apache Camel
 </p>
 <h2>Mise en place</h2><br>
 Ajout des dépendences<br>
@@ -9,76 +9,39 @@ Ajout des dépendences<br>
 <p>
 <dependency>
   <groupId>io.quarkus</groupId>
-  <artifactId>quarkus-redis-cache</artifactId>
+  <artifactId>quarkus-cache</artifactId>
 </dependency>
 <h2>application.properties</h2><br>
-#base de donnée redis
-quarkus.redis.hosts=redis://localhost:6379
-#expiration du cache
-quarkus.cache.redis.expire-after-write=20
+#Configuration Apache Came!
+quarkus.cache.caffeine.initial-capacity=10
+quarkus.cache.caffeine.maximum-size=20
+quarkus.cache.caffeine.expire-after-write=60S
+quarkus.cache.caffeine.maximum-size=1000
 </p>
 <h2>Controller ApiController.java</h2><br>
 <p>
-@Path("/cache")
+@Path("/api")
 public class ApiController {
  
-    // BddManager
-    @Inject
-    BddManager bdd;
- 
- 
     /*
-     * listepersonne
+     * test
      */
-    @CacheResult(cacheName = "listepersonne")
+    @CacheResult(cacheName = "test")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/listepersonne")
-    public String liste() {
-        //Accès Base de données
-        List<Personne> liste = bdd.getListPersonnes();
- 
-        if (liste.size() > 0) {
-            JSONArray jsonArray = new Personne().totListeJSON(liste);
-            return jsonArray.toString();
-        }
-        return getJSON("nb", "0").toString();
-    }
- 
-    /*
-     * personne
-     */
-    @CacheResult(cacheName = "personne")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/personne/{id}")
-    public String get(int id) {
-        //Accès Base de données
-        Personne personne = bdd.getPersonneFromId(id);
-        return personne.toJSON(personne).toString();
-    }
- 
- 
-    /*
-     * invalidation du cache
-     */
-    @CacheInvalidate(cacheName = "listepersonne")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/invalidate")
-    public String invalidate() {
-        return getJSON("invalidate", String.valueOf(bdd.invalidate())).toString();
- 
-    }
- 
-    /*
-     * getJSON
-     */
-    public JSONObject getJSON(String value, String key) {
-        JSONObject obj = new JSONObject();
-        obj.put(value, key);
-        return obj;
-    }
+    @Path("/api/test")
+    public String test()  throws InterruptedException  {
+        Trace.info("Applel REST : /api/test");        
+    
+         //the current time in milliseconds
+         long start = System.currentTimeMillis();
+         // stop the main thread of the program for 5000 milliseconds (5 seconds)
+         Thread.sleep(5000);
+         Trace.info("The thread is paused for " + (System.currentTimeMillis() - start) + " milliseconds");
+         return getJSON("test", "test").toString();
+
+     }
+
  
 }
 <p>
